@@ -1,4 +1,5 @@
 const Wallet = artifacts.require("Wallet");
+const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 
 contract("Wallet",(accounts)=>{
     let wallet = null;
@@ -28,7 +29,7 @@ contract("Wallet",(accounts)=>{
         const receiver_afterBalance = await web3.eth.getBalance(accounts[1]); // string
         console.log("receiver after balance",receiver_afterBalance);
         const finalBalance = web3.utils.toBN(receiver_afterBalance); // object
-        const intialBalance = web3.uitls.toBN(receive_beforeBalance);
+        const intialBalance = web3.utils.toBN(receive_beforeBalance);
         assert(finalBalance.sub(intialBalance).toNumber() === 10);
     })
 
